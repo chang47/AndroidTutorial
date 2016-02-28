@@ -1,5 +1,6 @@
 package net.joshchang.josh.week8;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,16 +9,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvHighscore;
-    private TextView tvScore;
+    private TextView tvTotalPoints;
+    private TextView tvPoints;
     private Button btn;
     private Button done;
-    private int score;
-    private int highScore;
+    private Button store;
+    private int points;
+    private int totalPoints;
     private SharedPreferences pref;
 
     private final String PREF_NAME = "pref";
-    private final String HIGH_SCORE = "highScore";
+    private final String POINTS = "totalPoints";
 
 
 
@@ -27,24 +29,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Basic setup code
-        tvHighscore = (TextView) findViewById(R.id.highScore);
-        tvScore = (TextView) findViewById(R.id.score);
-        score = 0;
-        highScore = 0;
+        tvTotalPoints = (TextView) findViewById(R.id.highScore);
+        tvPoints = (TextView) findViewById(R.id.score);
+        points = 0;
+        totalPoints = 0;
         btn = (Button) findViewById(R.id.button);
         done = (Button) findViewById(R.id.done);
+        store = (Button) findViewById(R.id.store);
 
         // Restoring data with pref
         pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        highScore = pref.getInt(HIGH_SCORE, 0); // get the default value
-        tvHighscore.setText("High Score: " + highScore);
+        totalPoints = pref.getInt(POINTS, 0); // get the default value
+        tvTotalPoints.setText("High Score: " + totalPoints);
 
-        // Increment our score
+        // Increment our points
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                score++;
-                tvScore.setText("Score: " + score);
+                points++;
+                tvPoints.setText("Score: " + points);
             }
         });
 
@@ -52,15 +55,24 @@ public class MainActivity extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (score > highScore) {
-                    highScore = score;
-                    tvHighscore.setText("High Score: " + highScore);
+                if (points > totalPoints) {
+                    totalPoints = points;
+                    tvTotalPoints.setText("High Score: " + totalPoints);
                     SharedPreferences.Editor edit = pref.edit();
-                    edit.putInt(HIGH_SCORE, highScore);
+                    edit.putInt(POINTS, totalPoints);
                     edit.commit();
                 }
-                score = 0;
-                tvScore.setText("Score: " + score);
+                points = 0;
+                tvPoints.setText("Score: " + points);
+            }
+        });
+
+        store.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplication(), StoreActivity.class);
+                i.putExtra("points", totalPoints);
+                startActivity(i);
             }
         });
     }
