@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         store.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplication(), StoreActivity.class);
+                Intent i = new Intent(getApplicationContext(), StoreActivity.class);
                 i.putExtra("points", totalPoints);
                 startActivity(i);
             }
