@@ -16,29 +16,25 @@ public class HelloActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hello);
+        setContentView(R.layout.hello_main);
 
         // 1) Gets access to the widget in the layout via their unique ID's
-        mEtText = (EditText) findViewById(R.id.etShowWord);
-        mBtnShow = (Button) findViewById(R.id.btnShowWord);
-        mTvDisplay = (TextView) findViewById(R.id.tvDisplayText);
+        mEtText = (EditText) findViewById(R.id.editText);
+        mBtnShow = (Button) findViewById(R.id.button);
+        mTvDisplay = (TextView) findViewById(R.id.textView);
+    }
 
-        // 3) Sets a listener to run your code whenever someone clicks your button.
-        mBtnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // gets the text that the user added  in the Edit Text
-                String text = mEtText.getText().toString();
+    // Used by our button in our XML
+    public void AddText(View v) {
+        // gets the text that the user added  in the Edit Text
+        String text = mEtText.getText().toString();
 
-                // only set the TextView to the new word if it's not empty
-                if (text.length() != 0) {
-                    // sets the textview to be the new text
-                    mTvDisplay.setText(text);
-                    // empty your Edit Text for convenience
-                    mEtText.setText("");
-                }
-            }
-        });
+        // only set the TextView to the new word if it's not empty
+        if (text.length() != 0) {
+            // sets the textview to be the new text
+            mTvDisplay.setText(text);
+            // empty your Edit Text for convenience
+            mEtText.setText("");
+        }
     }
 }
-
