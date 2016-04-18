@@ -7,25 +7,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="net.joshchang.josh.week8.MainActivity">
+    tools:context="net.joshchang.josh.cookieclicker.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score: 0"
-        android:id="@+id/points"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="Points: 0"
+        android:id="@+id/tvPoints"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="101dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Click"
-        android:id="@+id/button"
-        android:layout_marginTop="37dp"
-        android:layout_below="@+id/score"
-        android:layout_alignRight="@+id/score"
-        android:layout_alignEnd="@+id/score" />
+        android:id="@+id/btnPoints"
+        android:onClick="btnClick"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

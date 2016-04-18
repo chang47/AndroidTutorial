@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Basic setup
-        tvPoints = (TextView) findViewById(R.id.score);
-        btn = (Button) findViewById(R.id.button);
+        tvPoints = (TextView) findViewById(R.id.tvPoints);
+        btn = (Button) findViewById(R.id.btnPoints);
 
         // Restoring data with pref
         pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -33,15 +33,12 @@ public class MainActivity extends AppCompatActivity {
         points = pref.getInt(POINTS, 0);
         // Sets the text
         tvPoints.setText("Score: " + points);
+    }
 
-        // Increment our points and displays it
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                points++;
-                tvPoints.setText("Score: " + points);
-            }
-        });
+    // Increment our points and displays it
+    public void btnClick(View v) {
+        points++;
+        tvPoints.setText("Points: " + points);
     }
 
     // Whenever the app is paused we would save our points
@@ -58,4 +55,3 @@ public class MainActivity extends AppCompatActivity {
         edit.commit();
     }
 }
-
