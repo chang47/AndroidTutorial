@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class StoreActivity extends AppCompatActivity {
+public class ShopActivity extends AppCompatActivity {
     private int points;
     private TextView tvPoints;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store);
+        setContentView(R.layout.activity_shop);
 
         // Get the data that our Intent passed in
         Bundle extra = getIntent().getExtras();
@@ -25,18 +25,16 @@ public class StoreActivity extends AppCompatActivity {
         }
 
         // Creates and set our TextView to show our points
-        tvPoints = (TextView) findViewById(R.id.storePoints);
+        tvPoints = (TextView) findViewById(R.id.tvShopPoints);
         tvPoints.setText("Points: " + points);
 
         // Creates our back button to send us back to MainActivity
-        Button back =  (Button) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-            }
-        });
+        Button back = (Button) findViewById(R.id.btnBack);
+    }
 
+    // brings us back to the main activity
+    public void backToMain(View v) {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 }

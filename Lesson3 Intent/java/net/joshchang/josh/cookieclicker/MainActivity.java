@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Basic setup
-        tvPoints = (TextView) findViewById(R.id.score);
-        btn = (Button) findViewById(R.id.button);
-        store = (Button) findViewById(R.id.store); // !!!! Change #2
+        tvPoints = (TextView) findViewById(R.id.tvPoints);
+        btn = (Button) findViewById(R.id.btnPoints);
+        store = (Button) findViewById(R.id.btnShop); // !!!! Change #2
 
         // Restoring data with pref
         pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -36,37 +36,25 @@ public class MainActivity extends AppCompatActivity {
         points = pref.getInt(POINTS, 0);
         // Sets the text
         tvPoints.setText("Score: " + points);
+    }
 
-        // Increment our points and displays it
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                points++;
-                tvPoints.setText("Score: " + points);
-            }
-        });
+    // opens the new ShopActivity
+    public void shopButton(View v) {
+        Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+        intent.putExtra("points", points);
+        startActivity(intent);
+    }
 
-        // !!!! Change #3
-        // The onclick listener that changes us from our current activity
-        // to our StoreActivity
-        store.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Creates our intent to go to StoreActivity
-                Intent i = new Intent(getApplicationContext(), StoreActivity.class);
-                // Passes our points to pass along
-                i.putExtra("points", points);
-                // Changes our current activity to our StoreActivity
-                startActivity(i);
-            }
-        });
+    // Increment our points and displays it
+    public void btnClick(View v) {
+        points++;
+        tvPoints.setText("Points: " + points);
     }
 
     // Whenever the app is paused we would save our points
     @Override
     protected void onPause() {
         super.onPause();
-
 
         // Gets a Editor from our shared preference
         SharedPreferences.Editor edit = pref.edit();
@@ -76,4 +64,3 @@ public class MainActivity extends AppCompatActivity {
         edit.commit();
     }
 }
-

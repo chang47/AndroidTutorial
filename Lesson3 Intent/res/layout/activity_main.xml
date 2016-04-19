@@ -7,32 +7,33 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="net.joshchang.josh.week8.MainActivity">
+    tools:context="com.example.iamjo.cookieclicker.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score: 0"
-        android:id="@+id/score"
+        android:text="Points: 0"
+        android:id="@+id/tvPoints"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="101dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click"
+        android:id="@+id/btnPoints"
+        android:onClick="btnClick"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click"
-        android:id="@+id/button"
-        android:layout_marginTop="37dp"
-        android:layout_below="@+id/score"
-        android:layout_alignRight="@+id/score"
-        android:layout_alignEnd="@+id/score" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Store"
-        android:id="@+id/store"
+        android:text="Shop"
+        android:id="@+id/btnShop"
+        android:onClick="shopButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
